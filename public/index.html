@@ -87,10 +87,12 @@ window.logout=()=>signOut(auth);
 onAuthStateChanged(auth, async u=>{
   user=u;
   if(!u) return;
-  const token=await u.getIdTokenResult(true);
-  const adminEmails=(document.body.dataset.adminEmails||"").split(",").filter(Boolean);
-  // Server remains the authority for owner access; UI uses the custom claim/email only to choose the dashboard.
-  owner=token.claims.role==="owner" || token.claims.role==="admin";
+  try {
+    const me=await fetch("/api/me",{headers:{Authorization:"Bearer "+await u.getIdToken()}}).then(r=>r.json());
+    owner=!!me.isOwner || me.role==="owner" || me.role==="admin";
+  } catch(e) {
+    owner=false;
+  }
   if(owner) openOwner(); else openSitter();
 });
 

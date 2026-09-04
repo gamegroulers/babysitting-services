@@ -6,11 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 if (!admin.apps.length) {
-  const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-  
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-  });
+  admin.initializeApp({ credential: admin.credential.applicationDefault() });
 }
 const db = admin.firestore();
 const auth = admin.auth();
@@ -49,6 +45,11 @@ async function requireSitterOrOwner(req,res,next) {
     next();
   } catch(e) { res.status(401).json({error:"Login required"}); }
 }
+
+app.get("/api/me", requireUser, async (req,res) => {
+  const email = (req.user.email || "").toLowerCase();
+  res.json({ok:true, isOwner: ownerEmails().includes(email), role:req.user.role || null});
+});
 
 app.get("/api/config", (req,res) => {
   res.json({
