@@ -118,17 +118,18 @@ function openSitter(){dashboardModal.classList.add("open");dashEyebrow.textConte
 window.showTab=t=>{document.querySelectorAll(".tabs .tab").forEach(x=>x.classList.remove("active"));event.target.classList.add("active");["bookings","sitters","settings"].forEach(x=>document.getElementById("tab-"+x).classList.toggle("hidden",x!==t));if(t==="sitters")loadSitters();};
 
 async function loadOwnerBookings(){
- const d=await api("/api/bookings");
+ const [d,s]=await Promise.all([api("/api/bookings"),api("/api/sitters")]);
+ const activeSitters=(s.sitters||[]).filter(x=>x.active);
  document.getElementById("tab-bookings").innerHTML=`<div class="dash-actions"><b>${d.bookings.length} booking request(s)</b><button class="btn ghost" onclick="loadOwnerBookings()">Refresh</button></div>`+
- (d.bookings.length?d.bookings.map(b=>bookingCard(b,true)).join(""):"<div class='empty'>No booking requests yet.</div>");
+ (d.bookings.length?d.bookings.map(b=>bookingCard(b,true,activeSitters)).join(""):"<div class='empty'>No booking requests yet.</div>");
 }
-function bookingCard(b,admin){
+function bookingCard(b,admin,sitters=[]){
  return `<article class="booking-card"><div class="booking-title"><div><b>${esc(b.parentName)}</b><span>${esc(b.date)} • ${esc(b.startTime)}–${esc(b.endTime)}</span></div><em>${esc(b.status)}</em></div>
  <div class="booking-grid"><div><small>Children</small><b>${esc(b.childCount)} (${esc(b.childAges)})</b></div><div><small>Phone</small><b>${esc(b.phone)}</b></div><div><small>Address</small><b>${esc(b.address)}</b></div><div><small>Total</small><b>$${Number(b.estimatedTotal||0).toFixed(2)}</b></div><div><small>Deposit</small><b>$${Number(b.deposit||100).toFixed(2)} • ${esc(b.depositStatus)}</b></div><div><small>Payment</small><b>${esc(b.paymentMethod||"—")}</b></div></div>
  ${admin?`<div class="admin-controls"><label>Status<select id="status-${b.id}"><option ${b.status==="pending"?"selected":""}>pending</option><option ${b.status==="confirmed"?"selected":""}>confirmed</option><option ${b.status==="completed"?"selected":""}>completed</option><option ${b.status==="cancelled"?"selected":""}>cancelled</option></select></label>
  <label>Deposit<select id="deposit-${b.id}"><option ${b.depositStatus==="required"?"selected":""}>required</option><option ${b.depositStatus==="paid"?"selected":""}>paid</option><option ${b.depositStatus==="refunded"?"selected":""}>refunded</option></select></label>
  <label>Payment<select id="payment-${b.id}"><option ${b.paymentStatus==="unpaid"?"selected":""}>unpaid</option><option ${b.paymentStatus==="paid"?"selected":""}>paid</option><option ${b.paymentStatus==="partial"?"selected":""}>partial</option></select></label>
- <label>Sitter<select id="sitter-${b.id}"><option value="">Unassigned</option></select></label>
+ <label>Sitter<select id="sitter-${b.id}"><option value="">Unassigned</option>${sitters.map(s=>`<option value="${esc(s.id)}" ${b.sitterId===s.id?"selected":""}>${esc(s.displayName)}</option>`).join("")}</select></label>
  <button class="btn" onclick="saveBooking('${b.id}')">Save</button><button class="btn danger" onclick="deleteBooking('${b.id}')">Delete</button></div>`:""}
  ${b.notes?`<p class="notes"><b>Parent notes:</b> ${esc(b.notes)}</p>`:""}</article>`;
 }
