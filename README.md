@@ -37,15 +37,15 @@
 2. Enable Firebase Authentication → Email/Password.
 3. Create Firestore.
 4. Create a Firebase Web App and copy its config values.
-5. Create a Firebase service account for the Node backend.
-6. Set the environment variables from `.env.example`.
+5. Create a Firebase service account for the Node backend and download its JSON key.
+6. Set the environment variables from `.env.example`. On Render, put the entire service-account JSON into the `FIREBASE_SERVICE_ACCOUNT_JSON` secret variable.
 7. Set `ADMIN_EMAILS` to the owner's email address. This controls owner access on the backend.
 8. Deploy to Render using the included `render.yaml`, or deploy to another Node host.
 9. In Firebase Authentication, create the owner account using the owner email. The backend recognizes that email as the owner.
 10. Open the deployed website, log in through Portal Login, and use Owner Portal → Sitters → Create a Sitter Login.
 
 ## Firebase Admin credentials
-Never put a Firebase service-account JSON file in the public website or GitHub repository. Store it as a secret in the hosting provider. Render supports environment/secret configuration; the exact secure credential method should follow the host's current Firebase/Google credential guidance.
+Never put a Firebase service-account JSON file in the public website or GitHub repository. On Render, add a secret environment variable named `FIREBASE_SERVICE_ACCOUNT_JSON` and paste the entire JSON key contents into its value. The server parses that secret at startup.
 
 ## Payment handling
 This version records the customer's chosen payment method and lets the owner track payment/deposit status. It does NOT collect or store card numbers. For online card payments, connect a PCI-compliant processor such as Stripe rather than storing payment-card data yourself.

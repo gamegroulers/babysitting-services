@@ -6,7 +6,22 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 if (!admin.apps.length) {
-  admin.initializeApp({ credential: admin.credential.applicationDefault() });
+  // Render does not automatically have Google Application Default Credentials.
+  // Prefer a JSON service-account secret supplied as an environment variable,
+  // while still supporting GOOGLE_APPLICATION_CREDENTIALS when configured.
+  let credential;
+  if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
+    try {
+      const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+      credential = admin.credential.cert(serviceAccount);
+    } catch (e) {
+      console.error("FIREBASE_SERVICE_ACCOUNT_JSON is not valid JSON:", e.message);
+      process.exit(1);
+    }
+  } else {
+    credential = admin.credential.applicationDefault();
+  }
+  admin.initializeApp({ credential });
 }
 const db = admin.firestore();
 const auth = admin.auth();
@@ -46,9 +61,9 @@ async function requireSitterOrOwner(req,res,next) {
   } catch(e) { res.status(401).json({error:"Login required"}); }
 }
 
-app.get("/api/me", requireUser, async (req,res) => {
-  const email = (req.user.email || "").toLowerCase();
-  res.json({ok:true, isOwner: ownerEmails().includes(email), role:req.user.role || null});
+app.get("/api/me", requireUser, (req,res) => {
+  const isOwner = !!(req.user.email && ownerEmails().includes(req.user.email.toLowerCase()));
+  res.json({ isOwner, email: req.user.email || "", uid: req.user.uid || "", role: req.user.role || "" });
 });
 
 app.get("/api/config", (req,res) => {
