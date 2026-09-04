@@ -6,7 +6,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 if (!admin.apps.length) {
-  admin.initializeApp({ credential: admin.credential.applicationDefault() });
+  const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+  admin.initializeeApp({
+    credential: admin.credential.cert(serviceAccount)
+  });
 }
 const db = admin.firestore();
 const auth = admin.auth();
