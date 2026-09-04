@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Babysitting Services | Safe • Caring • Reliable</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="brand"><span class="crown">♕</span><div><b>BABYSITTING SERVICES</b><small>SAFE • CARING • RELIABLE</small></div></div>
+  <nav><a href="#home">Home</a><a href="#services">Services</a><a href="#rates">Rates</a><a href="#booking">Book</a><a href="#faq">FAQ</a><button class="btn ghost" onclick="openLogin()">Portal Login</button></nav>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div><span class="eyebrow">KIDS COME FIRST.</span><h1>Safe. Trusted.<br><span>Reliable.</span></h1>
+  <p>Babysitting services for families throughout the <b>Inland Empire & Orange County.</b></p>
+  <div class="hero-buttons"><a class="btn" href="#booking">Request a Booking</a><a class="btn ghost" href="#rates">See Rates</a></div>
+  <div class="trust-row"><span>✓ Ages 4+</span><span>✓ Friday–Tuesday</span><span>✓ Flexible Hours</span></div></div>
+  <div class="hero-art"><img src="flyer.png" alt="Babysitting Services flyer"></div>
+</section>
+
+<section id="services" class="section"><div class="section-head"><span class="eyebrow">WHAT I OFFER</span><h2>Care built around your child.</h2></div>
+<div class="cards">
+<article><i>✓</i><h3>Safe & Supervised</h3><p>A dependable, caring environment with attentive supervision.</p></article>
+<article><i>★</i><h3>Fun Activities</h3><p>Fun and engaging age-appropriate activities.</p></article>
+<article><i>✎</i><h3>Homework Help</h3><p>Homework assistance when needed.</p></article>
+<article><i>♨</i><h3>Light Meal Preparation</h3><p>Food must already be provided. I can prepare what you have.</p></article>
+<article><i>♥</i><h3>Snacks Provided</h3><p>I bring snacks. Meals are not provided.</p></article>
+<article><i>◆</i><h3>Trusted Care</h3><p>Your child's safety is my top priority.</p></article>
+</div></section>
+
+<section id="rates" class="section dark-card">
+<div><span class="eyebrow">SIMPLE PRICING</span><div class="price">$15<span>/hr</span></div><p>One straightforward hourly rate.</p></div>
+<div class="rule"><b>$100 Deposit</b><p>The deposit rolls into the final payment.</p><p>If the final payment is less than $100, the remaining amount is refunded.</p></div>
+<div class="rule"><b>Accepted Payments</b><div class="pills"><span>Cash</span><span>Card</span><span>Cash App</span><span>Venmo</span><span>Zelle</span></div></div>
+</section>
+
+<section class="section split"><div><span class="eyebrow">IMPORTANT INFO</span><h2>Before you book</h2>
+<ul class="checklist"><li>Children must be <b>4 years old or older.</b></li><li>Available <b>Friday through Tuesday</b>.</li><li>Flexible hours.</li><li>Snacks are brought by the sitter.</li><li>Parents provide meals/food if needed.</li><li>Light meal prep uses food already provided.</li><li>Serving areas: <b>Inland Empire & Orange County.</b></li></ul></div>
+<div class="contact-box"><span class="eyebrow">SERIOUS INQUIRIES</span><h3>Let's talk about your childcare needs.</h3><a class="phone" href="tel:+19094191732">+1 (909) 419-1732</a><a class="btn" href="#booking">Start Booking</a></div></section>
+
+<section id="booking" class="section booking"><div class="section-head"><span class="eyebrow">BOOKING REQUEST</span><h2>Tell me what you need.</h2><p>Your request is reviewed before it is confirmed.</p></div>
+<form id="bookingForm">
+<div class="grid2"><label>Parent/Guardian Name*<input name="parentName" required></label><label>Phone*<input name="phone" type="tel" required></label></div>
+<div class="grid2"><label>Email<input name="email" type="email"></label><label>Number of Children*<input name="childCount" type="number" min="1" required></label></div>
+<div class="grid2"><label>Children's Ages*<input name="childAges" placeholder="Example: 4, 7" required></label><label>Preferred Payment*<select name="paymentMethod" required><option value="">Select</option><option>Cash</option><option>Card</option><option>Cash App</option><option>Venmo</option><option>Zelle</option></select></label></div>
+<div class="grid3"><label>Date*<input name="date" type="date" required></label><label>Start Time*<input name="startTime" type="time" required></label><label>End Time*<input name="endTime" type="time" required></label></div>
+<label>Service Address*<input name="address" required></label>
+<label>Notes<textarea name="notes" rows="4" placeholder="Routines, activities, food preferences, etc."></textarea></label>
+<div class="estimate" id="estimate">Estimated service total: —</div>
+<button class="btn" type="submit">Send Booking Request</button><p id="bookingMsg" class="msg"></p>
+</form></section>
+
+<section id="faq" class="section faq"><div class="section-head"><span class="eyebrow">FAQ</span><h2>Quick answers.</h2></div>
+<details><summary>Does the $100 deposit get added on top of the final price?</summary><p>No. It rolls into the final payment. If the final payment is below $100, the unused amount is refunded.</p></details>
+<details><summary>Do you provide meals?</summary><p>No. Snacks are brought by the sitter. Parents provide meals/food, and the food must already be available for light meal preparation.</p></details>
+<details><summary>What ages do you accept?</summary><p>Children ages 4 and older.</p></details><details><summary>Where do you provide service?</summary><p>Inland Empire and Orange County.</p></details></section>
+</main>
+
+<footer><b>BABYSITTING SERVICES</b><span>Safe • Caring • Reliable</span><a href="tel:+19094191732">+1 (909) 419-1732</a></footer>
+
+<div class="modal" id="loginModal"><div class="modal-card"><button class="close" onclick="closeLogin()">×</button><span class="eyebrow">SECURE PORTAL</span><h2>Portal Login</h2><p>Owners and authorized sitters only.</p>
+<form id="loginForm"><label>Email<input id="loginEmail" type="email" required></label><label>Password<input id="loginPassword" type="password" required></label><button class="btn">Sign In</button><p id="loginMsg" class="msg"></p></form></div></div>
+
+<div class="modal" id="dashboardModal"><div class="modal-card dashboard"><button class="close" onclick="closeDashboard()">×</button><div class="portal-top"><div><span class="eyebrow" id="dashEyebrow">PORTAL</span><h2 id="dashTitle">Dashboard</h2></div><button class="btn ghost" onclick="logout()">Sign Out</button></div>
+<div id="ownerTools" class="owner-tools hidden">
+<div class="tabs"><button class="tab active" onclick="showTab('bookings')">Bookings</button><button class="tab" onclick="showTab('sitters')">Sitters</button><button class="tab" onclick="showTab('settings')">Business</button></div>
+<div id="tab-bookings"></div><div id="tab-sitters" class="hidden"></div><div id="tab-settings" class="hidden"><div class="settings-box"><h3>Current Business Settings</h3><p><b>Rate:</b> $15/hour</p><p><b>Deposit:</b> $100</p><p><b>Service:</b> Ages 4+ • Friday–Tuesday • Inland Empire & Orange County</p><p><b>Payments:</b> Cash, Card, Cash App, Venmo, Zelle</p><p class="muted">These values are displayed by the website and can be changed in the source configuration when you are ready for a different rate or policy.</p></div></div>
+</div>
+<div id="sitterTools" class="hidden"><div id="sitterBookings"></div></div>
+</div></div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+const cfg=await fetch("/api/config").then(r=>r.json());
+const app=initializeApp(cfg); const auth=getAuth(app);
+let user=null, owner=false;
+
+window.openLogin=()=>document.getElementById("loginModal").classList.add("open");
+window.closeLogin=()=>document.getElementById("loginModal").classList.remove("open");
+window.closeDashboard=()=>document.getElementById("dashboardModal").classList.remove("open");
+window.logout=()=>signOut(auth);
+
+onAuthStateChanged(auth, async u=>{
+  user=u;
+  if(!u) return;
+  const token=await u.getIdTokenResult(true);
+  const adminEmails=(document.body.dataset.adminEmails||"").split(",").filter(Boolean);
+  // Server remains the authority for owner access; UI uses the custom claim/email only to choose the dashboard.
+  owner=token.claims.role==="owner" || token.claims.role==="admin";
+  if(owner) openOwner(); else openSitter();
+});
+
+document.getElementById("loginForm").addEventListener("submit",async e=>{
+  e.preventDefault(); const m=document.getElementById("loginMsg"); m.textContent="Signing in…";
+  try{await signInWithEmailAndPassword(auth,loginEmail.value,loginPassword.value); closeLogin();}
+  catch(err){m.textContent="Login failed. Check your email and password.";}
+});
+
+async function api(url,opts={}){
+  const t=await user.getIdToken();
+  const r=await fetch(url,{...opts,headers:{...(opts.headers||{}),Authorization:"Bearer "+t,"Content-Type":"application/json"}});
+  const d=await r.json(); if(!r.ok) throw new Error(d.error||"Request failed"); return d;
+}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+function openOwner(){dashboardModal.classList.add("open");dashEyebrow.textContent="OWNER PORTAL";dashTitle.textContent="Business Dashboard";ownerTools.classList.remove("hidden");sitterTools.classList.add("hidden");loadOwnerBookings();}
+function openSitter(){dashboardModal.classList.add("open");dashEyebrow.textContent="SITTER VIEW";dashTitle.textContent="My Bookings";ownerTools.classList.add("hidden");sitterTools.classList.remove("hidden");loadSitter();}
+window.showTab=t=>{document.querySelectorAll(".tabs .tab").forEach(x=>x.classList.remove("active"));event.target.classList.add("active");["bookings","sitters","settings"].forEach(x=>document.getElementById("tab-"+x).classList.toggle("hidden",x!==t));if(t==="sitters")loadSitters();};
+
+async function loadOwnerBookings(){
+ const d=await api("/api/bookings");
+ document.getElementById("tab-bookings").innerHTML=`<div class="dash-actions"><b>${d.bookings.length} booking request(s)</b><button class="btn ghost" onclick="loadOwnerBookings()">Refresh</button></div>`+
+ (d.bookings.length?d.bookings.map(b=>bookingCard(b,true)).join(""):"<div class='empty'>No booking requests yet.</div>");
+}
+function bookingCard(b,admin){
+ return `<article class="booking-card"><div class="booking-title"><div><b>${esc(b.parentName)}</b><span>${esc(b.date)} • ${esc(b.startTime)}–${esc(b.endTime)}</span></div><em>${esc(b.status)}</em></div>
+ <div class="booking-grid"><div><small>Children</small><b>${esc(b.childCount)} (${esc(b.childAges)})</b></div><div><small>Phone</small><b>${esc(b.phone)}</b></div><div><small>Address</small><b>${esc(b.address)}</b></div><div><small>Total</small><b>$${Number(b.estimatedTotal||0).toFixed(2)}</b></div><div><small>Deposit</small><b>$${Number(b.deposit||100).toFixed(2)} • ${esc(b.depositStatus)}</b></div><div><small>Payment</small><b>${esc(b.paymentMethod||"—")}</b></div></div>
+ ${admin?`<div class="admin-controls"><label>Status<select id="status-${b.id}"><option ${b.status==="pending"?"selected":""}>pending</option><option ${b.status==="confirmed"?"selected":""}>confirmed</option><option ${b.status==="completed"?"selected":""}>completed</option><option ${b.status==="cancelled"?"selected":""}>cancelled</option></select></label>
+ <label>Deposit<select id="deposit-${b.id}"><option ${b.depositStatus==="required"?"selected":""}>required</option><option ${b.depositStatus==="paid"?"selected":""}>paid</option><option ${b.depositStatus==="refunded"?"selected":""}>refunded</option></select></label>
+ <label>Payment<select id="payment-${b.id}"><option ${b.paymentStatus==="unpaid"?"selected":""}>unpaid</option><option ${b.paymentStatus==="paid"?"selected":""}>paid</option><option ${b.paymentStatus==="partial"?"selected":""}>partial</option></select></label>
+ <label>Sitter<select id="sitter-${b.id}"><option value="">Unassigned</option></select></label>
+ <button class="btn" onclick="saveBooking('${b.id}')">Save</button><button class="btn danger" onclick="deleteBooking('${b.id}')">Delete</button></div>`:""}
+ ${b.notes?`<p class="notes"><b>Parent notes:</b> ${esc(b.notes)}</p>`:""}</article>`;
+}
+async function loadSitters(){
+ const d=await api("/api/sitters");
+ document.getElementById("tab-sitters").innerHTML=`<div class="create-box"><h3>Create a Sitter Login</h3><div class="grid2"><input id="newName" placeholder="Sitter name"><input id="newEmail" type="email" placeholder="Sitter email"></div><div class="grid2"><input id="newPhone" placeholder="Phone (optional)"><input id="newPass" type="password" placeholder="Temporary password (8+ chars)"></div><button class="btn" onclick="createSitter()">Create Sitter Account</button><p id="sitterMsg" class="msg"></p></div>`+
+`<h3>Authorized Sitters</h3>`+(d.sitters.length?d.sitters.map(s=>`<div class="sitter-row"><div><b>${esc(s.displayName)}</b><span>${esc(s.email)} ${s.phone?"• "+esc(s.phone):""}</span></div><span class="${s.active?"active":"inactive"}">${s.active?"Active":"Disabled"}</span><button class="btn ghost" onclick="toggleSitter('${s.id}',${!s.active})">${s.active?"Disable":"Enable"}</button></div>`).join(""):"<div class='empty'>No sitters created.</div>");
+}
+window.createSitter=async()=>{const m=sitterMsg;m.textContent="Creating…";try{await api("/api/owner/create-sitter",{method:"POST",body:JSON.stringify({displayName:newName.value,email:newEmail.value,password:newPass.value,phone:newPhone.value})});m.textContent="Sitter account created.";loadSitters();}catch(e){m.textContent=e.message;}};
+window.toggleSitter=async(id,active)=>{await api("/api/owner/sitters/"+id,{method:"PATCH",body:JSON.stringify({active})});loadSitters();};
+window.saveBooking=async id=>{const sitter=document.getElementById("sitter-"+id);await api("/api/bookings/"+id,{method:"PATCH",body:JSON.stringify({status:document.getElementById("status-"+id).value,depositStatus:document.getElementById("deposit-"+id).value,paymentStatus:document.getElementById("payment-"+id).value,sitterId:sitter.value,sitterName:sitter.options[sitter.selectedIndex]?.text||""})});loadOwnerBookings();};
+window.deleteBooking=async id=>{if(confirm("Delete this booking request?")){await api("/api/bookings/"+id,{method:"DELETE"});loadOwnerBookings();}};
+async function loadSitter(){const d=await api("/api/sitter/bookings");document.getElementById("sitterBookings").innerHTML=d.bookings.length?d.bookings.map(b=>bookingCard(b,false)).join(""):"<div class='empty'>No assigned bookings yet.</div>";}
+const form=document.getElementById("bookingForm");
+function estimate(){const s=form.startTime.value,e=form.endTime.value;if(!s||!e)return;let [sh,sm]=s.split(":").map(Number),[eh,em]=e.split(":").map(Number),mins=eh*60+em-(sh*60+sm);if(mins<=0)mins+=1440;document.getElementById("estimate").textContent=`Estimated service total: $${(mins/60*15).toFixed(2)} • $100 deposit required`;}
+form.startTime.addEventListener("change",estimate);form.endTime.addEventListener("change",estimate);
+form.addEventListener("submit",async e=>{e.preventDefault();const msg=bookingMsg;msg.textContent="Sending…";const body=Object.fromEntries(new FormData(form));try{const r=await fetch("/api/bookings",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});const d=await r.json();if(!r.ok)throw Error(d.error);msg.textContent=`Request received. Request ID: ${d.bookingId}. Estimated service total: $${Number(d.estimatedTotal).toFixed(2)}.`;form.reset();}catch(err){msg.textContent=err.message;}});
+</script>
+</body></html>

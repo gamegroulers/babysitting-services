@@ -1,0 +1,8 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // All private booking/sitter operations go through the server.
+    match /bookings/{id} { allow read, write: if false; }
+    match /sitters/{id} { allow read, write: if false; }
+  }
+}
